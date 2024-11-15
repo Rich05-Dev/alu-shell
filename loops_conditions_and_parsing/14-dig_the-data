@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
-#apache codes
-awk '{print $1,$9}' apache-access.log | sort -V | uniq -c | sort -n | perl -e 'print reverse <>'   
+# Group visitors by IP and HTTP status code, sorted by the number of occurrences
+
+awk '{print $1, $9}' apache-access.log | sort | uniq -c | sort -nr | awk '{print $1, $2, $3}'
+
